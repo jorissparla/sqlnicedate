@@ -4,7 +4,7 @@ ALTER FUNCTION [dbo].niceDate
 (
     @d datetime
 )
-RETURNS VARCHAR(30)
+RETURNS VARCHAR(50)
 AS
 BEGIN
 
@@ -27,16 +27,13 @@ IF (@diff = -1) SET @rv = 'Yesterday'
 IF (@diff >1 AND @diff < 6) BEGIN
 	SET @rv= 'Coming '+ DATENAME(dw,@d)
 END 
-IF (@diff >1 AND @diff < 6) BEGIN
+IF (@diff >1 AND @diff <= 6) BEGIN
 	SET @rv= 'Coming '+ DATENAME(dw,@d)
 END 
 
 
-IF (@diff >-6 AND @diff < -1) BEGIN
+IF (@diff >=-6 AND @diff < -1) BEGIN
 	SET @rv= 'Last '+ DATENAME(dw,@d)
-END 
-IF (@diff >1 AND @diff < 6) BEGIN
-	SET @rv= 'Coming '+ DATENAME(dw,@d)
 END 
 
 
@@ -54,7 +51,7 @@ END
 
 IF (@diff <-6) BEGIN
 	IF (@diff/7 <= -2) BEGIN
-		SET @rv = CONVERT(varchar(2), @diff/7)+' Weeks ago '
+		SET @rv = CONVERT(varchar(2), -1*(@diff/7))+' Weeks '
 	END
 	
 	ELSE BEGIn
@@ -72,4 +69,7 @@ go
 DECLARE @d DATETIME
 SET @d=DATEADD(mi, -18, getdate())
 SELECT dbo.niceDate(@d)
-SELECT dbo.niceDate(DATEADD(dd,-12, GETDATE()))
+SELECT dbo.niceDate('2017-05-24')
+
+SELECT DATEDIFF(dd, GETDATE(),'2017-05-24')
+
