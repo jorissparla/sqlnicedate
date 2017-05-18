@@ -12,13 +12,13 @@ returns e.g.
 ## query
 `SELECT getdate(),dbo.niceDate('2017-05-18 00:50'), `
 
-	`dbo.niceDate('2017-05-17 00:50'),`
+	dbo.niceDate('2017-05-17 00:50'),
+	
+	dbo.niceDate('2017-05-18 22:50'),
   
-	`dbo.niceDate('2017-05-18 22:50'),`
+	dbo.niceDate('2017-05-22 22:50'),
   
-	`dbo.niceDate('2017-05-22 22:50'),`
-  
-	`dbo.niceDate('2017-05-27 22:50')`
+	dbo.niceDate('2017-05-27 22:50')
   
   
 ## results
