@@ -31,6 +31,16 @@ IF (@diff >1 AND @diff < 6) BEGIN
 	SET @rv= 'Coming '+ DATENAME(dw,@d)
 END 
 
+
+IF (@diff >-6 AND @diff < -1) BEGIN
+	SET @rv= 'Last '+ DATENAME(dw,@d)
+END 
+IF (@diff >1 AND @diff < 6) BEGIN
+	SET @rv= 'Coming '+ DATENAME(dw,@d)
+END 
+
+
+
 IF (@diff >6) BEGIN
 	IF (@diff/7 >= 2) BEGIN
 		SET @rv = 'In '+CONVERT(varchar(2), @diff/7)+' Weeks '
@@ -42,6 +52,19 @@ IF (@diff >6) BEGIN
 	SET @rv=@rv + 'and '+CONVERT(varchar(2), @diff %7) +' days,' 
 END
 
+IF (@diff <-6) BEGIN
+	IF (@diff/7 <= -2) BEGIN
+		SET @rv = CONVERT(varchar(2), @diff/7)+' Weeks ago '
+	END
+	
+	ELSE BEGIn
+		SET @rv = '1 week '
+	END 
+	SET @rv=@rv + 'and '+CONVERT(varchar(2), -1*(@diff % 7)) +' days ago,' 
+END
+
+
+
 RETURN  @rv+' at '+ @timepart
 
 END
@@ -49,3 +72,4 @@ go
 DECLARE @d DATETIME
 SET @d=DATEADD(mi, -18, getdate())
 SELECT dbo.niceDate(@d)
+SELECT dbo.niceDate(DATEADD(dd,-12, GETDATE()))
