@@ -1,7 +1,19 @@
 # sqlnicedate
-A stored procedure that with a given input, provides a 'Nice date' 😊😊😊
+A *SQL Server* function that with a given input, provides a 'Nice date' 😊😊😊
 
-## examples 
+## usage
+
+`SELECT dbo.niceDate(DATEADD(dd,12, GETDATE()))`
+
+returns e.g.
+
+`In 1 week and 5 days, at 15:28`
+
+
+
+## Other results
+Today, at 07:08
+
 Tomorrow, at 14:52
 
 
