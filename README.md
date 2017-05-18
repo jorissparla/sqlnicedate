@@ -1,4 +1,4 @@
-# sqlnicedate
+# niceDate()
 A *SQL Server* function that with a given input, provides a 'Nice date' 😊😊😊
 
 ## usage
